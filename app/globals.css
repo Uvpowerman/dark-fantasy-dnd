@@ -91,6 +91,9 @@ a { color: inherit; text-decoration: none; }
 .hero-visual::before { left: -1px; top: -1px; border-left: 2px solid; border-top: 2px solid; }
 .hero-visual::after { right: -1px; bottom: -1px; border-right: 2px solid; border-bottom: 2px solid; }
 .hero-visual img { width: 100%; display: block; aspect-ratio: 1; object-fit: cover; filter: saturate(.86) contrast(1.08); }
+.countdown { display: flex; justify-content: space-between; align-items: end; margin: 0 0 14px; }
+.countdown span { color: #9b8b73; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+.countdown strong { color: var(--pink); font: 600 22px var(--font-geist-mono), monospace; letter-spacing: .08em; }
 .scan-line { position: absolute; top: 45%; left: 22px; right: 22px; height: 1px; background: var(--cyan); box-shadow: 0 0 14px var(--cyan); opacity: .4; }
 .floating-label { position: absolute; padding: 8px 11px; background: rgba(3,9,13,.9); border: 1px solid var(--line); color: #b5c8cf; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
 .floating-label i { display: inline-block; width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; box-shadow: 0 0 10px var(--cyan); margin-right: 6px; }
@@ -408,15 +411,16 @@ a { color: inherit; text-decoration: none; }
 .stat-explanations article p { margin: 0; color: #738d96; font-size: 10px; line-height: 1.55; }
 .combat-example { display: grid; grid-template-columns: 150px 1fr; gap: 20px; padding: 19px 18px 0; color: #91a9b1; font-size: 11px; line-height: 1.55; }
 .combat-example b { color: var(--pink); text-transform: uppercase; letter-spacing: .06em; }
-.card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-.card-grid.enemies { grid-template-columns: repeat(5, 1fr); }
+.card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.card-grid.enemies { grid-template-columns: repeat(3, 1fr); }
 .character-card { display: flex; flex-direction: column; background: #07131a; border: 1px solid var(--line); overflow: hidden; transition: transform .2s, border-color .2s; }
 .character-card:hover { transform: translateY(-5px); border-color: rgba(212,170,98,.45); }
+.character-card.chosen { border-color: var(--cyan); box-shadow: 0 0 0 1px rgba(212,170,98,.22), 0 18px 50px rgba(0,0,0,.28); }
 .card-image {
   display: grid;
   place-items: center;
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   background:
@@ -431,6 +435,12 @@ a { color: inherit; text-decoration: none; }
 .card-copy ul { margin: 9px 0 0; padding-left: 17px; color: #91a8b0; font-size: 11px; line-height: 1.55; }
 .card-copy li + li { margin-top: 6px; }
 .card-copy p { margin: 9px 0 0; color: #91a8b0; font-size: 12px; line-height: 1.55; }
+.choose-character { width: 100%; margin-top: 18px; padding: 12px 14px; border: 1px solid rgba(212,170,98,.48); background: transparent; color: var(--cyan); font-weight: 800; font-size: 11px; text-transform: uppercase; cursor: pointer; }
+.choose-character:hover, .choose-character[aria-pressed="true"] { background: var(--cyan); color: #17100a; }
+.selection-summary { position: sticky; bottom: 14px; z-index: 12; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 18px; margin-top: 20px; padding: 15px 18px; border: 1px solid rgba(212,170,98,.42); background: rgba(16,13,11,.94); box-shadow: 0 16px 45px rgba(0,0,0,.45); backdrop-filter: blur(14px); }
+.selection-summary b { color: var(--cyan); font-size: 12px; text-transform: uppercase; }
+.selection-summary span { min-width: 0; overflow: hidden; color: #b5a58e; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.selection-summary button { padding: 8px 10px; border: 1px solid var(--line); background: transparent; color: #b5a58e; font-size: 10px; cursor: pointer; }
 
 .story-section { border-top: 1px solid var(--line); }
 .story-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 22px; }
@@ -557,6 +567,8 @@ footer { min-height: 120px; display: flex; justify-content: space-between; align
   .stat-explanations article, .stat-explanations article:nth-child(2n), .stat-explanations article:nth-child(4n) { min-height: auto; border-right: 0; }
   .combat-example { grid-template-columns: 1fr; gap: 6px; }
   .card-grid, .card-grid.enemies { grid-template-columns: 1fr; }
+  .selection-summary { grid-template-columns: 1fr auto; }
+  .selection-summary span { grid-column: 1 / -1; grid-row: 2; white-space: normal; }
   .story-grid { grid-template-columns: 1fr; }
   .scene-details summary { grid-template-columns: 70px 1fr; }
   .scene-details summary em { display: none; }
